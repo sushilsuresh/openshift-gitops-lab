@@ -1,0 +1,11 @@
+---
+openshift_cluster_content:
+- galaxy_requirements: "{{ inventory_dir }}/../requirements.yml"
+- object: OpenShift Image Registry Configuration
+  pre_steps:
+  - role: self/roles/discover
+  content:
+  - name: Image Registry Route
+    file: "{{ inventory_dir }}/../templates/registry-operator-config.j2"
+    tags:
+    - image-registry

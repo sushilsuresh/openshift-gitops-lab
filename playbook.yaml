@@ -1,0 +1,8 @@
+- hosts: localhost
+  roles:
+  - discover
+  tasks:
+  - name: Expose image-registry
+    command: oc apply -f -
+    args:
+      stdin: "{{ lookup('template', 'registry-operator-config.j2') }}"

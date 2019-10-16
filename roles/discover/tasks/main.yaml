@@ -1,0 +1,12 @@
+- name: Get default ingress controller
+  k8s_facts:
+    api_version:  operator.openshift.io/v1
+    kind: IngressController
+    name: default
+    namespace: openshift-ingress-operator
+  register: r_default_ingress_controller
+
+- name: Set discovered facts
+  set_fact:
+    openshift_ingress_default_subdomain: >
+      {{ r_default_ingress_controller.resources[0].status.domain }}
