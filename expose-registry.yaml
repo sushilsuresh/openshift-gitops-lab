@@ -1,0 +1,12 @@
+- hosts: localhost
+  tasks:
+  - name: create a k8s namespace
+    k8s:
+      name: testing
+      kind: Namespace
+      state: present
+
+  - name: Expose image-registry
+    k8s:
+      state: present
+      src: templates/registry-operator-config.yaml
